@@ -15,8 +15,8 @@ const ConfirmModal = ({ closeModal, confirmAction, title, message }) => {
         <p>{message}</p>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" onClick={closeModal}>cancel</button>
-        <button type="button" className="btn btn-primary" onClick={confirmAction}>continue</button>
+        <button type="button" className="btn btn-secondary" onClick={closeModal}>Cancel</button>
+        <button type="button" className="btn btn-primary" onClick={confirmAction}>Continue</button>
       </div>
     </div>
   )

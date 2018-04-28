@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteModal = ({ closeModal, deleteAction, title, message }) => {
+const DeleteModal = ({ closeModal, deleteAction, title, message, cancelText, deleteText }) => {
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -15,8 +15,8 @@ const DeleteModal = ({ closeModal, deleteAction, title, message }) => {
         <p>{message}</p>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" onClick={closeModal}>cancel</button>
-        <button type="button" className="btn btn-primary" onClick={deleteAction}>continue</button>
+        <button type="button" className="btn btn-secondary" onClick={closeModal}>{cancelText || 'Cancel'}</button>
+        <button type="button" className="btn btn-danger" onClick={deleteAction}>{deleteText || 'Continue'}</button>
       </div>
     </div>
   )

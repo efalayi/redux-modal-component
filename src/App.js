@@ -9,6 +9,8 @@ import './App.css';
 
 import { showModal, hideModal } from './actions/modal'
 
+const MESSAGE = "A redux modal component.";
+
 const mapDispatchToProps = dispatch => ({
   hideModal: () => dispatch(hideModal()),
   showModal: (modalProps, modalType) => {
@@ -46,7 +48,7 @@ class App extends Component {
     this.props.showModal({
       open: true,
       title: 'Alert Modal',
-      message: 'Great work!',
+      message: MESSAGE,
       closeModal: this.closeModal
     }, 'alert')
   }
@@ -55,7 +57,7 @@ class App extends Component {
     this.props.showModal({
       open: true,
       title: 'Confirm Modal',
-      message: 'Great work!',
+      message: MESSAGE,
       confirmAction: this.closeModal,
       closeModal: this.closeModal
     }, 'confirm')
@@ -65,16 +67,17 @@ class App extends Component {
     this.props.showModal({
       open: true,
       title: 'Delete Modal',
-      message: 'Great work',
+      message: MESSAGE,
       deleteAction: this.closeModal,
-      closeModal: this.closeModal
+      closeModal: this.closeModal,
+      deleteText: 'delete'
     }, 'delete')
   }
 
   openPromptModal(event) {
     this.props.showModal({
       open: true,
-      title: 'Generate Address',
+      title: 'Prompt Modal',
       fields: [{
         label: 'Address name',
         name: 'addressName',
@@ -87,10 +90,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">A Redux Modal Component</h1>
+      <div className="app">
+        <header className="app-header">
+          <img src={logo} className="app-logo" alt="logo" />
+          <h1 className="app-title">A Redux Modal Component</h1>
         </header>
         <div className="container">
           <div className="modal-types row d-flex justify-content-center align-items-center">
@@ -120,9 +123,9 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <p className="App-intro">
+        <span className="app-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        </span>
         <ModalRoot />
       </div>
     );
