@@ -1,8 +1,10 @@
-import ActionTypes from '../constants/ActionTypes';
+import ActionTypes from '../constants/ActionTypes'
 
 const initialState = {
   modalType: null,
-  modalProps: {}
+  modalProps: {
+    open: false
+  }
 }
 
 export default (state = initialState, action) => {
