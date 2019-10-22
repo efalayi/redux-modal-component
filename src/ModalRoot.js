@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ReactModal from 'react-modal';
+import ReactModal from 'react-modal'
 
-import { default as modalTypes } from './components/Modals';
+import { default as modalTypes } from './components/Modals'
 
 const MODAL_TYPES = {
   'alert': modalTypes.alertModal,
@@ -17,15 +17,15 @@ const mapStateToProps = state => ({
 
 class ModalContainer extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      modalIsOpen: false
-    };
+      modalIsOpen: props.modalProps.open
+    }
     this.closeModal = this.closeModal.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
+    if (nextProps.modalProps.open !== this.props.modalProps.open) {
       this.setState({
         modalIsOpen: nextProps.modalProps.open
       })
@@ -33,7 +33,7 @@ class ModalContainer extends React.Component {
   }
 
   closeModal() {
-    this.setState({ modalIsOpen: false })
+    this.props.hideModal()
   }
 
   render() {

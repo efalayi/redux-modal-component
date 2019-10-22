@@ -1,6 +1,7 @@
 import React from 'react'
 
-const PromptModal = ({ closeModal, confirmAction, title, fields, onInputChange }) => {
+const PromptModal = ({ closeModal, confirmAction, title,
+  fields, onInputChange, showLabel }) => {
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -16,8 +17,12 @@ const PromptModal = ({ closeModal, confirmAction, title, fields, onInputChange }
           {
             fields.map(field => {
               return (
-                <div className="form-group" key={field.label}>
-                  <label htmlFor="address">{`${field.label}`}</label>
+                <div className="form-group" key={field.name}>
+                  {
+                    showLabel && (
+                      <label htmlFor="address">{`${field.label}`}</label>
+                    )
+                  }
                   <input
                     id="address"
                     name={field.name}

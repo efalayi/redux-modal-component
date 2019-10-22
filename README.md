@@ -5,6 +5,9 @@ This a simple React modal component expamples designed using the Redux method.
 
 ![Alt rrmc](/images/rrmc.png?raw=true "Screenshot")
 
+#### Dependencies
+Node - (version >=4 and <=9)
+
 ***
 #### Getting Started
 

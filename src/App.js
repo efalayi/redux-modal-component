@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import logo from './logo.svg';
-import ModalRoot from './ModalRoot';
+import logo from './logo.svg'
+import ModalRoot from './ModalRoot'
 
-import './dist/css/template.css';
-import './App.css';
+import './dist/css/template.css'
+import './App.css'
 
 import { showModal, hideModal } from './actions/modal'
 
-const MESSAGE = "A redux modal component.";
+const MESSAGE = "A redux modal component."
 
 const mapDispatchToProps = dispatch => ({
   hideModal: () => dispatch(hideModal()),
@@ -21,6 +21,9 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      address: ''
+    }
     this.closeModal = this.closeModal.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.openAlertModal = this.openAlertModal.bind(this);
@@ -30,21 +33,28 @@ class App extends Component {
     this.showInput = this.showInput.bind(this);
   }
 
-  closeModal(event) {
-    this.props.hideModal();
+  closeModal() {
+    this.props.hideModal()
   }
 
   onInputChange(event) {
     this.setState({
       [event.target.name]: event.target.value
-    });
+    })
   }
 
-  showInput(event) {
-    console.log(this.state);
+  showInput() {
+    const { address } = this.state
+    const message = address ? `Address: ${address}` : 'No address entered'
+    this.props.showModal({
+      open: true,
+      title: 'Prompt Modal',
+      message,
+      closeModal: this.closeModal
+    }, 'alert')
   }
 
-  openAlertModal(event) {
+  openAlertModal() {
     this.props.showModal({
       open: true,
       title: 'Alert Modal',
@@ -53,7 +63,7 @@ class App extends Component {
     }, 'alert')
   }
 
-  openConfirmModal(event) {
+  openConfirmModal() {
     this.props.showModal({
       open: true,
       title: 'Confirm Modal',
@@ -63,7 +73,7 @@ class App extends Component {
     }, 'confirm')
   }
 
-  openDeleteModal(event) {
+  openDeleteModal() {
     this.props.showModal({
       open: true,
       title: 'Delete Modal',
@@ -74,14 +84,14 @@ class App extends Component {
     }, 'delete')
   }
 
-  openPromptModal(event) {
+  openPromptModal() {
     this.props.showModal({
       open: true,
       title: 'Prompt Modal',
       fields: [{
-        label: 'Address name',
-        name: 'addressName',
-        placeholder: 'Enter address name',
+        name: 'address',
+        placeholder: 'Enter your address',
+        showLabel: false
       }],
       onInputChange: this.onInputChange,
       confirmAction: this.showInput
@@ -126,10 +136,10 @@ class App extends Component {
         <span className="app-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </span>
-        <ModalRoot />
+        <ModalRoot hideModal={this.props.hideModal} />
       </div>
-    );
+    )
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App)
